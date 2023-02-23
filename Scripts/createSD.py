@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 
 #reads in wrapped and unwrapped positional data
-unwrapped = pd.read_csv('PosSod.csv')
-wrapped = pd.read_csv('PosSodWrapped.csv')
+unwrapped = pd.read_csv('PosMagUnwrapped.csv')
+wrapped = pd.read_csv('PosMagWrapped.csv')
 
 maxFrame = unwrapped['Frame Number'].max()
 #sorts by index number
@@ -50,7 +50,7 @@ unwrapped['sqrDisp'] = unwrapped['dX2'] + unwrapped['dY2'] + unwrapped['dZ2']
 #add sqrDisp to wrappedData
 wrapped['sqrDisp'] = unwrapped['sqrDisp']
 
-
+print(unwrapped)
 
 #still needs to be processed (remove the first, second and last frame number data)
 badValues = [0,1,maxFrame]
