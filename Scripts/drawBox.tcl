@@ -1,3 +1,4 @@
+#function that given minimum and maximum coordinates creates an outline of a box
 proc drawBox {min max} {
 	#set min and max x y z values
 	puts "$min $max"
@@ -29,6 +30,8 @@ proc drawBox {min max} {
 	draw line "$maxx $maxy $maxz" "$maxx $miny $maxz"
 }
 
+
+#function that given minimum and maximum coordinate creates a drawn in box
 proc drawBoxFill {min max} {
 
 	set minx [lindex $min 0]
