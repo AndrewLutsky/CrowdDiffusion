@@ -58,7 +58,6 @@ for {set i 0} {$i < $N} {incr i} {
 	puts $i
 }
 
-puts "TEST0"
 #appends a selection for each molid to a list
 set sellist {}
 for {set i 0} {$i < $num} {incr i} {
