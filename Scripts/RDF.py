@@ -13,7 +13,6 @@ dfClaN.name = 'Chloride in Condition A'
 
 
 fig, axes = plt.subplots(1,1)
-#plt.figure(figsize=(10,8))
 plt.rcParams['font.weight'] = 'bold'
 maxr = 0
 for i in [dfSod, dfMag, dfClaM, dfClaN]:
