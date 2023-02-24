@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import matplotlib.colors
 
+
+#sets font, size, type
 plt.rcParams['font.family'] = 'Times New Roman'
 plt.rcParams['font.size'] = 24
 plt.rcParams['font.weight'] = 'bold'
@@ -28,7 +30,6 @@ dfX = df
 dfY = df
 
 #find range of X Y and Z values
-
 
 xrange = (df['X'].min(), df['X'].max())
 yrange = (df['Y'].min(), df['Y'].max())
@@ -104,9 +105,9 @@ del dfY['level_0']
 #CREATE YX HEATMAP
 arrYX = np.empty((yquantiles,xquantiles),dtype=object)
 arr2YX = np.empty((yquantiles,xquantiles))
-
+#loops though each row
 for row in df.itertuples():
-        #makes the first element of the empty ndarrYXay equal to sqrDisp
+        #makes the first element of the empty ndarray equal to sqrDisp
         if arrYX[int(row[7]),int(row[6])] is not None:
             arrYX[int(row[7])][int(row[6])] = np.append(arrYX[int(row[7])][int(row[6])],row[5])
         #appends if first element is not None
@@ -118,7 +119,7 @@ for row in df.itertuples():
 arrZY = np.empty((zquantiles,yquantiles),dtype = object)
 arr2ZY = np.empty((zquantiles,yquantiles))
 for row in dfX.itertuples():
-        #makes the first element of the empty ndarrZYay equal to sqrDisp
+        #makes the first element of the empty ndarray equal to sqrDisp
         if arrZY[int(row[8]),int(row[7])] is not None:
             arrZY[int(row[8])][int(row[7])] = np.append(arrZY[int(row[8])][int(row[7])],row[5])
         #appends if first element is not None
@@ -130,7 +131,7 @@ for row in dfX.itertuples():
 arrZX = np.empty((zquantiles,xquantiles),dtype = object)
 arr2ZX = np.empty((zquantiles,xquantiles))
 for row in dfY.itertuples():
-        #makes the first element of the empty ndarrZXay equal to sqrDisp
+        #makes the first element of the empty ndarray equal to sqrDisp
         if arrZX[int(row[8]),int(row[6])] is not None:
             arrZX[int(row[8])][int(row[6])] = np.append(arrZX[int(row[8])][int(row[6])],row[5])
         #appends if first element is not None
@@ -152,17 +153,17 @@ for i in range(yquantiles):
         arr2ZX[i,j] = float((np.mean(arrZX[i,j])/(6*5e-12)) * (10e-21))
         arr2YX[i,j] = float((np.mean(arrYX[i,j])/(6*5e-12)) * (10e-21))
         arr2ZY[i,j] = float((np.mean(arrZY[i,j])/(6*5e-12)) * (10e-21))
-print(arr2ZX)    
 #Creates a heatmap graph
 
 #####createSeaborn HeatMap####
 
 
 
-
+#this needs to be flipped, otherwise y axis is backwards(array indexing vs. pandas indexing)
 arr2YZ = np.flip(arr2ZY, axis = 0)
 arr2ZX = np.flip(arr2ZX, axis = 0)
 arr2YX = np.flip(arr2YX, axis = 0)
+#generate four subplots, one for each slice and one for the color bar
 fig, (ax1, ax2, ax3, axcb) = plt.subplots(1,4, figsize=(20,6), gridspec_kw = {'width_ratios':[1,1,1,0.05]})
 g1 = sb.heatmap(arr2YX, vmin = 0,vmax = 30e-10,cbar = False, robust= True, ax=ax1, cmap='Blues')
 g2 = sb.heatmap(arr2ZY, vmin = 0, vmax = 30e-10,cbar = False, robust= True, ax=ax2, cmap='Blues')
