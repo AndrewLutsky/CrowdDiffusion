@@ -24,14 +24,23 @@ for i in [dfSod, dfMag, dfClaM, dfClaN]:
     i['D'] = i['sqrDisp'] * (10e-20)/(30e-11)
     if maxr < i['r'].max():
         maxr = i['r'].max()
-    print(i)
     #finds maximum range of min and max
     #rangeR = (i['r'].min(),i['r'].max())
     axes = sb.kdeplot(i, x='r', label = i.name )
+    x = axes.lines[-1].get_xdata()
+    print(axes.lines[-1].get_ydata())
+    upper = axes.lines[-1].get_ydata() + i['D'].std()
+    lower = axes.lines[-1].get_ydata() - i['D'].std()
+    print(x)
+    print(upper)
+    print(lower)
+
+axes.fill_between(x, lower, upper)
+
 plt.xlim(0, 50)
 axes.legend(loc="upper center", fancybox = True, bbox_to_anchor = (0.5,1.35))
 axes.set_ylabel("Relative Density", fontdict={"fontweight":"bold"})
 axes.set_xlabel("Radius (\u212B)", fontdict ={"fontweight": "bold"})
 plt.tight_layout()
-plt.savefig('RDF.png', dpi=500)
+plt.savefig('RDFSEM.png', dpi=500)
 #plt.show()
