@@ -3,19 +3,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sb
 dfSod = pd.DataFrame(np.load("wrappedSod.npy"))
-dfSod.name = 'Sodium'
+dfSod.name = 'Sodium in NaCl'
 dfMag = pd.DataFrame(np.load("wrappedMag.npy"))
-dfMag.name = 'Magnesium'
+dfMag.name = 'Magnesium MgCl\u2082'
 dfClaM = pd.DataFrame(np.load("wrappedClaM.npy"))
-dfClaM.name = 'Chloride in Condition B'
+dfClaM.name = 'Chloride in MgCl\u2082'
 dfClaN = pd.DataFrame(np.load("wrappedClaN.npy"))
-dfClaN.name = 'Chloride in Condition A'
+dfClaN.name = 'Chloride in NaCl'
 
 
 fig, axes = plt.subplots(1,1)
 plt.rcParams['font.weight'] = 'bold'
 maxr = 0
-for i in [dfSod, dfMag, dfClaM, dfClaN]:
+for i in [dfSod, dfMag, dfClaN, dfClaM]:
     del i[0]
     del i[1]
     
