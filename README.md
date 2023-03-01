@@ -18,5 +18,4 @@ Note that depending on the getFile script segment may or may not be included.
 
 
 Simulation setups are located in the Protein directory along with the buildN.tcl script. This repository will later contain the
-psfgen tool log of the created system. Additionally, this repository doesn't contain the right scripts for the crowded dataframe
-as of 2.24.2023 and should contain this script as of 2.27.2023.
+psfgen tool log of the created system.
